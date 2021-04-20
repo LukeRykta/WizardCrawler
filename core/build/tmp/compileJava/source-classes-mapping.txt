@@ -1,2 +1,0 @@
-game/wizardcrawler/WizardCrawlerApp.java
- game.wizardcrawler.WizardCrawlerApp
