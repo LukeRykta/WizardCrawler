@@ -1,0 +1,2 @@
+game/wizardcrawler/desktop/DesktopLauncher.java
+ game.wizardcrawler.desktop.DesktopLauncher
