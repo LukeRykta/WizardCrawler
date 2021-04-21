@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
+import game.wizardcrawler.Tools.KeyController;
 
 public class WizardCrawlerApp extends Game {
 	public static final int V_WIDTH = 400;
@@ -45,10 +46,11 @@ public class WizardCrawlerApp extends Game {
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(1, 1, 0, 1);
 		batch.begin();
 		//batch.draw(img, 0, 0);
 		batch.end();
+		System.out.println("test");
 	}
 	
 	@Override

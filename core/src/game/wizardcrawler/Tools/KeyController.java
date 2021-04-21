@@ -1,4 +1,4 @@
-package game.wizardcrawler.desktop.Tools;
+package game.wizardcrawler.Tools;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
