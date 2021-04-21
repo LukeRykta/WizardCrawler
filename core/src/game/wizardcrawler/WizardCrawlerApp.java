@@ -41,6 +41,7 @@ public class WizardCrawlerApp extends Game {
 		Gdx.input.setInputProcessor(controller);
 
 		batch = new SpriteBatch();
+		System.out.println("test26");
 
 	}
 
@@ -50,7 +51,6 @@ public class WizardCrawlerApp extends Game {
 		batch.begin();
 		//batch.draw(img, 0, 0);
 		batch.end();
-		System.out.println("test");
 	}
 	
 	@Override
