@@ -2,3 +2,7 @@ game/wizardcrawler/Tools/KeyController.java
  game.wizardcrawler.Tools.KeyController
 game/wizardcrawler/WizardCrawlerApp.java
  game.wizardcrawler.WizardCrawlerApp
+game/wizardcrawler/Scenes/Hud.java
+ game.wizardcrawler.Scenes.Hud
+game/wizardcrawler/Screens/PlayScreen.java
+ game.wizardcrawler.Screens.PlayScreen

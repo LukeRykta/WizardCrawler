@@ -40,8 +40,8 @@ public class WizardCrawlerApp extends Game {
 		controller = new KeyController();
 		Gdx.input.setInputProcessor(controller);
 
+		manager = new AssetManager();
 		batch = new SpriteBatch();
-		System.out.println("test26");
 
 	}
 
