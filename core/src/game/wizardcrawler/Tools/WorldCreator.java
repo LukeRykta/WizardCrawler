@@ -1,0 +1,153 @@
+package game.wizardcrawler.Tools;
+
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.*;
+import game.wizardcrawler.Screens.Play;
+import game.wizardcrawler.Sprites.Computer;
+import game.wizardcrawler.WizardCrawlerApp;
+
+public class WorldCreator {
+    public WorldCreator(Play screen) {
+        World world = screen.getWorld();
+        TiledMap map = screen.getMap();
+        //defines what body consists of
+        BodyDef bdef = new BodyDef();
+        PolygonShape shape = new PolygonShape();
+        FixtureDef fdef = new FixtureDef();
+        Body body;
+        Body computer;
+        Body papers;
+        Body mothercomputer;
+
+        //wall boundaries
+        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the ground) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getY() + rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+
+            //add this body to our box2d world
+            body = world.createBody(bdef);
+
+            //setAsBox = define fixture
+            shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+            fdef.shape = shape;
+            body.createFixture(fdef);
+        }
+
+        //furniture boundaries
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the furniture) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getY() + rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+
+            //add this body to our box2d world
+            body = world.createBody(bdef);
+
+            //setAsBox = define fixture
+            shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+            fdef.shape = shape;
+
+            body.createFixture(fdef);
+
+        }
+
+        //computer
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Computer(screen, rect);
+        }
+
+        //papers
+        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the papers) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getY() + rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+
+            //add this body to our box2d world
+            papers = world.createBody(bdef);
+            shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+            fdef.isSensor = true;
+
+            papers.createFixture(fdef);
+
+        }
+
+        //motherterminal
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the papers) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getY() + rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+
+            //add this body to our box2d world
+            mothercomputer = world.createBody(bdef);
+            shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+            fdef.isSensor = true;
+
+            mothercomputer.createFixture(fdef);
+
+        }
+    /*
+        //create ground bodies/fixtures
+        //the "2" in map.getLayers().get(2) references the index of the object layer in Tiled from starting from the ground up (0.background->1.graphics->*2*.ground)
+        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the ground) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / MarioBros.PPM, (rect.getY() + rect.getHeight() / 2) / MarioBros.PPM);
+
+            //add this body to our box2d world
+            body = world.createBody(bdef);
+
+            //setAsBox = define fixture
+            shape.setAsBox((rect.getWidth() / 2) / MarioBros.PPM, (rect.getHeight() / 2) / MarioBros.PPM);
+            fdef.shape = shape;
+            body.createFixture(fdef);
+        }
+
+        //create brick bodies/fixtures (index 5)
+        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Brick(screen, rect);
+        }
+
+        //create pipe bodies/fixtures (index 3)
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the ground) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / MarioBros.PPM, (rect.getY() + rect.getHeight() / 2) / MarioBros.PPM);
+
+            //add this body to our box2d world
+            body = world.createBody(bdef);
+
+            //setAsBox = define fixture
+            shape.setAsBox((rect.getWidth() / 2) / MarioBros.PPM, (rect.getHeight() / 2) / MarioBros.PPM);
+            fdef.shape = shape;
+            //this is so when enemy collides with pipe he can turn around (and not when he falls on ground or something else)
+            fdef.filter.categoryBits = MarioBros.OBJECT_BIT;
+            body.createFixture(fdef);
+        }
+
+        //create coin bodies/fixtures (index 4)
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Coin(screen, rect);
+            */
+    }
+}
