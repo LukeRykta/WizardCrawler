@@ -10,7 +10,7 @@ public class Computer extends InteractiveTileObject{
     public Computer(Play screen, Rectangle bounds){
         super(screen, bounds);
         fixture.setUserData(this);
-        setCategoryFilter(WizardCrawlerApp.COMPUTER_BIT);
+        //setCategoryFilter(WizardCrawlerApp.COMPUTER_BIT);
     }
 
     @Override

@@ -140,7 +140,7 @@ public class Wizard extends Sprite {
 
         fdef.filter.categoryBits = WizardCrawlerApp.WIZARD_BIT;
         //these are the things wizard can collide with
-        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT | WizardCrawlerApp.COMPUTER_BIT;
+        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);

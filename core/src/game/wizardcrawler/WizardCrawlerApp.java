@@ -24,7 +24,6 @@ public class WizardCrawlerApp extends Game {
 	public static final short FURNITURE_BIT = 4;
 	public static final short WALL_BIT = 8;
 	public static final short ACCESSED_BIT = 16;
-	public static final short COMPUTER_BIT = 32;
 
 	public SpriteBatch batch;
 	public static boolean inRange = false;

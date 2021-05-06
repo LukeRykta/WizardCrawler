@@ -37,7 +37,6 @@ public class WorldCreator {
         }
 
 
-
     /*
         //create ground bodies/fixtures
         //the "2" in map.getLayers().get(2) references the index of the object layer in Tiled from starting from the ground up (0.background->1.graphics->*2*.ground)
