@@ -34,6 +34,7 @@ public class WorldCreator {
             shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
+
         }
 
 

@@ -27,7 +27,7 @@ public class Wizard extends Sprite {
     private Vector2 velocity = new Vector2();
     private float speed = 60 * 2, gravity = 60 * 1.8f;
     private TextureRegion wizardStand;
-    private TextureRegion wizardFall;
+    private Animation<TextureRegion> wizardFall;
     private Animation<TextureRegion> wizardRun;
     private Animation<TextureRegion> wizardJump;
     private float stateTimer;
@@ -53,7 +53,10 @@ public class Wizard extends Sprite {
         wizardJump = new Animation(0.1f, frames);
 
         wizardStand = new TextureRegion(getTexture(), 0, 0, 32, 32);
-        wizardFall = new TextureRegion(getTexture(), 96, 32, 32, 32);
+        //wizardFall = new TextureRegion(getTexture(), 96, 32, 32, 32);
+        for(int i = 1; i < 3; i++)
+            frames.add(new TextureRegion(getTexture(),  96, 32, 32, 32));
+        wizardFall = new Animation(0.1f, frames);
 
         defineWizard();
         setBounds(0, 0, 32 / WizardCrawlerApp.PPM, 32 / WizardCrawlerApp.PPM);
@@ -73,13 +76,12 @@ public class Wizard extends Sprite {
         TextureRegion region;
         switch (currentState) {
             case JUMPING:
+            case FALLING:
                 region = wizardJump.getKeyFrame(stateTimer);
                 break;
             case RUNNING:
                 region = wizardRun.getKeyFrame(stateTimer, true); // this is a looping animation, if returns to end, will return to first frame
                 break;
-            case FALLING:
-                region = wizardFall;
             case STANDING:
             default:
                 region = wizardStand;
