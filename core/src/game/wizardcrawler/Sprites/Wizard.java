@@ -51,12 +51,13 @@ public class Wizard extends Sprite {
         for(int i = 1; i < 3; i++)
             frames.add(new TextureRegion(getTexture(), i * 32, 34, 32, 32));
         wizardJump = new Animation(0.1f, frames);
+        wizardFall = new Animation(0.1f, frames);
 
         wizardStand = new TextureRegion(getTexture(), 0, 0, 32, 32);
         //wizardFall = new TextureRegion(getTexture(), 96, 32, 32, 32);
-        for(int i = 1; i < 3; i++)
-            frames.add(new TextureRegion(getTexture(),  96, 32, 32, 32));
-        wizardFall = new Animation(0.1f, frames);
+        //for(int i = 1; i < 3; i++)
+        //    frames.add(new TextureRegion(getTexture(),  96, 32, 32, 32));
+
 
         defineWizard();
         setBounds(0, 0, 32 / WizardCrawlerApp.PPM, 32 / WizardCrawlerApp.PPM);
