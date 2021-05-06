@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Array;
 import game.wizardcrawler.Screens.Play;
 import game.wizardcrawler.WizardCrawlerApp;
 
+import javax.xml.soap.Text;
+
 public class Wizard extends Sprite {
     public boolean isRunningRight() {
         return runningRight;
@@ -17,7 +19,7 @@ public class Wizard extends Sprite {
         this.runningRight = runningRight;
     }
 
-    public enum State {STANDING, RUNNING};
+    public enum State {STANDING, RUNNING, JUMPING, FALLING};
     public State currentState;
     public State previousState;
     public World world;
@@ -25,7 +27,9 @@ public class Wizard extends Sprite {
     private Vector2 velocity = new Vector2();
     private float speed = 60 * 2, gravity = 60 * 1.8f;
     private TextureRegion wizardStand;
+    private TextureRegion wizardFall;
     private Animation<TextureRegion> wizardRun;
+    private Animation<TextureRegion> wizardJump;
     private float stateTimer;
     private boolean runningRight;
 
@@ -44,7 +48,12 @@ public class Wizard extends Sprite {
         wizardRun = new Animation(0.1f, frames);
         frames.clear();
 
+        for(int i = 1; i < 3; i++)
+            frames.add(new TextureRegion(getTexture(), i * 32, 34, 32, 32));
+        wizardJump = new Animation(0.1f, frames);
+
         wizardStand = new TextureRegion(getTexture(), 0, 0, 32, 32);
+        wizardFall = new TextureRegion(getTexture(), 96, 32, 32, 32);
 
         defineWizard();
         setBounds(0, 0, 32 / WizardCrawlerApp.PPM, 32 / WizardCrawlerApp.PPM);
@@ -63,9 +72,14 @@ public class Wizard extends Sprite {
 
         TextureRegion region;
         switch (currentState) {
+            case JUMPING:
+                region = wizardJump.getKeyFrame(stateTimer);
+                break;
             case RUNNING:
                 region = wizardRun.getKeyFrame(stateTimer, true); // this is a looping animation, if returns to end, will return to first frame
                 break;
+            case FALLING:
+                region = wizardFall;
             case STANDING:
             default:
                 region = wizardStand;
@@ -88,7 +102,11 @@ public class Wizard extends Sprite {
     }
 
     public State getState(){
-        if (b2body.getLinearVelocity().x != 0 || b2body.getLinearVelocity().y != 0) // wizard not at a state of rest? run animation
+        if ((b2body.getLinearVelocity().y > 0) || (b2body.getLinearVelocity().y < 0 && previousState == State.STANDING)) // wizard moving upwards? stand
+            return State.JUMPING;
+        else if (b2body.getLinearVelocity().y < 0) // wizard going down? fall animation
+            return State.FALLING;
+        else if (b2body.getLinearVelocity().x != 0 || b2body.getLinearVelocity().y != 0) // wizard not at a state of rest? run animation
             return State.RUNNING;
         else                                        // wizard doing something else? = stand animation
             return State.STANDING;

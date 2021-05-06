@@ -12,11 +12,11 @@ game/wizardcrawler/Sprites/Wizard.java
  game.wizardcrawler.Sprites.Wizard
  game.wizardcrawler.Sprites.Wizard$1
  game.wizardcrawler.Sprites.Wizard$State
-game/wizardcrawler/WizardCrawlerApp.java
- game.wizardcrawler.WizardCrawlerApp
-game/wizardcrawler/Screens/GameOver.java
- game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/Screens/Play.java
  game.wizardcrawler.Screens.Play
+game/wizardcrawler/Screens/GameOver.java
+ game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/Tools/WorldCreator.java
  game.wizardcrawler.Tools.WorldCreator
+game/wizardcrawler/WizardCrawlerApp.java
+ game.wizardcrawler.WizardCrawlerApp

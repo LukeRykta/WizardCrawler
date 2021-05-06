@@ -147,7 +147,7 @@ public class Play implements Screen {
         renderer.render();
 
         //renderer our Box2DDebugLines (green lines around objects represent collision areas) (also: gamecam.combined is the projection matrix)
-        b2dr.render(world, gamecam.combined);
+        //b2dr.render(world, gamecam.combined);
 
         //main cam when running through the game
         game.batch.setProjectionMatrix(gamecam.combined);
