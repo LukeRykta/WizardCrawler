@@ -16,19 +16,20 @@ import game.wizardcrawler.WizardCrawlerApp;
 import javafx.scene.control.Labeled;
 
 public class Hud implements Disposable {
-    private static Labeled scoreLabel;
     public Stage stage;
     private Viewport viewport;
 
     public Integer worldTimer;
     private float timeCount;
     private static Integer score;
+    private static Label scoreLabel;
     private Label timeLabel;
     private Label countdownLabel;
 
     public Hud(SpriteBatch sb){
         worldTimer = 100;
         timeCount = 0;
+        score = 0;
 
         viewport = new FitViewport(WizardCrawlerApp.V_WIDTH + 200, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -37,12 +38,14 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        Label countdownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        countdownLabel = new Label(String.format("%02d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        Label timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        Label wizzyLabel = new Label("WIZZY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        Label worldLabel = new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        Label worldLabel = new Label("LEVEL", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
+        table.add(wizzyLabel).expandX().padTop(10);
         table.add(worldLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
         table.row();

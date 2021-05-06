@@ -90,7 +90,7 @@ public class Wizard extends Sprite {
     public State getState(){
         if (b2body.getLinearVelocity().x != 0 || b2body.getLinearVelocity().y != 0) // wizard not at a state of rest? run animation
             return State.RUNNING;
-        else                                        // wizard doing something else? stand animation
+        else                                        // wizard doing something else? = stand animation
             return State.STANDING;
     }
 
@@ -109,7 +109,7 @@ public class Wizard extends Sprite {
 
         //test start position on map
         // FIXME: 5/4/2021 change for spawn location
-        bdef.position.set(256 / WizardCrawlerApp.PPM, 256 / WizardCrawlerApp.PPM);
+        bdef.position.set(64 / WizardCrawlerApp.PPM, 64 / WizardCrawlerApp.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
 
         //Now that the wizard's defined, we are able create in our world

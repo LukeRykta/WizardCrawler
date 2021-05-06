@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
+import game.wizardcrawler.Screens.Play;
 import game.wizardcrawler.Tools.KeyController;
 
 public class WizardCrawlerApp extends Game {
@@ -26,6 +27,7 @@ public class WizardCrawlerApp extends Game {
 	public static final short COMPUTER_BIT = 32;
 
 	public SpriteBatch batch;
+	public static boolean inRange = false;
 
 	public static Texture background;
 	public static TextureRegion backgroundRegion;
@@ -35,6 +37,10 @@ public class WizardCrawlerApp extends Game {
 	/* NOTE: using AssetManager in a static way can cause issues. We may want to pass around Assetmanager to
 	the classes that need it. It is used in a static context here temporarily */
 	public static AssetManager manager;
+
+	public static Texture loadTexture (String file) {
+		return new Texture(Gdx.files.internal(file));
+	}
 	
 	@Override
 	public void create () {
@@ -43,20 +49,20 @@ public class WizardCrawlerApp extends Game {
 
 		manager = new AssetManager();
 		batch = new SpriteBatch();
-
+		setScreen(new Play(this));
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 1, 0, 1);
-		batch.begin();
-		//batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
+		manager.update();
 	}
 	
 	@Override
 	public void dispose () {
+		super.dispose();
+		manager.dispose();
 		batch.dispose();
-		//img.dispose();
+		background.dispose();
 	}
 }

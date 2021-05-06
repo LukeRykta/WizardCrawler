@@ -45,6 +45,8 @@ public class Play implements Screen {
     public static float mastervol = .08f;
 
     public Play(WizardCrawlerApp game){
+
+        atlas = new TextureAtlas("WizardGFX/wizard.pack");
         this.game = game;
         //create cam used to follow wizard through cam world
         createCamera();
@@ -53,14 +55,14 @@ public class Play implements Screen {
 
         //Load our map and setup our map renderer
         maploader = new TmxMapLoader();
-        map = maploader.load("Maps/test.tmx");
+        map = maploader.load("Maps/wizardMap1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / WizardCrawlerApp.PPM);
 
         //initially set our gamecam to be centered correctly at the start of the game
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
         //doSleep = true means bodies at rest won't get physics calculations.. saves time processing
-        world = new World(new Vector2(0, 0), false);
+        world = new World(new Vector2(0, -10), false);
 
         //creates green lines to debug boundaries
         b2dr = new Box2DDebugRenderer();
@@ -86,22 +88,14 @@ public class Play implements Screen {
     }
 
     public void handleInput(float dt){
-        if(((Gdx.input.isKeyPressed(Input.Keys.UP)) || (Gdx.input.isKeyPressed(Input.Keys.W))) && player.b2body.getLinearVelocity().y <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0, 0.25f), player.b2body.getWorldCenter(), true);
-        else if(((Gdx.input.isKeyPressed(Input.Keys.DOWN)) || (Gdx.input.isKeyPressed(Input.Keys.S))) && player.b2body.getLinearVelocity().y >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(0, -0.25f), player.b2body.getWorldCenter(), true);
-        else if (((Gdx.input.isKeyPressed(Input.Keys.RIGHT)) || (Gdx.input.isKeyPressed(Input.Keys.D))) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.25f, 0), player.b2body.getWorldCenter(), true);
-        else if(((Gdx.input.isKeyPressed(Input.Keys.LEFT)) || (Gdx.input.isKeyPressed(Input.Keys.A))) && player.b2body.getLinearVelocity().x >= -2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.25f, 0), player.b2body.getWorldCenter(), true);
-        else {
-            player.b2body.setLinearDamping(10f);
-        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
 
-        // if user presses E while in range of computer object display new screen
-        if ((Gdx.input.isKeyJustPressed(Input.Keys.E)) && WizardCrawlerApp.inRange){
-            game.setScreen(new GameOver(game));
-        }
+    }
 
         // FIXME: 3/27/2021 Pause menu implementation?
         /*
@@ -109,7 +103,7 @@ public class Play implements Screen {
                 game.setScreen(new PauseMenu(game));
         }
          */
-    }
+
 
     public void update(float dt){
         handleInput(dt);

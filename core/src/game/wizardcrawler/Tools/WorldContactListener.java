@@ -1,6 +1,7 @@
 package game.wizardcrawler.Tools;
 
 import com.badlogic.gdx.physics.box2d.*;
+import game.wizardcrawler.WizardCrawlerApp;
 import game.wizardcrawler.Sprites.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
@@ -20,7 +21,7 @@ public class WorldContactListener implements ContactListener {
 
     @Override
     public void endContact(Contact contact) { //when two figures disconnect from each other
-        WorldContactListener.inRange = false;
+        WizardCrawlerApp.inRange = false;
     }
 
     @Override
