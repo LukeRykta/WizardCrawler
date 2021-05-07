@@ -74,15 +74,11 @@ public class Play implements Screen {
         player = new Wizard(this);
 
         //plays music on start
-        gamemusic = Gdx.audio.newMusic(Gdx.files.internal("Sounds/gameMusic.mp3"));
+        gamemusic = WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class);
+
         gamemusic.setLooping(true);
         gamemusic.setVolume(mastervol);
         gamemusic.play();
-
-        //gamemusic = WizardCrawlerApp.manager.get("audio/music/virusmusic.mp3", Music.class);
-        //gamemusic.setLooping(true);
-        //gamemusic.setVolume(mastervol);
-        //gamemusic.play();
     }
 
     private void createCamera(){

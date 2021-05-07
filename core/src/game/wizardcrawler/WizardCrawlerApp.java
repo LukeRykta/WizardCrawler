@@ -23,7 +23,7 @@ public class WizardCrawlerApp extends Game {
 	// Pixels per meter: use this float (divisional reasons) to scale everything that has pixel size (positional locations, viewports, character models)
 	public static final float PPM = 100;
 
-	// Update these to true objects
+	// Collision bits for objects
 	public static final short DEFAULT_BIT = 1;
 	public static final short GROUND_BIT = 2;
 	public static final short WIZARD_BIT = 4;
@@ -54,7 +54,8 @@ public class WizardCrawlerApp extends Game {
 
 		manager = new AssetManager();
 		manager.load("Audio/Music/menuMusic.mp3", Music.class);
-		manager.load("Audio/Sounds/pickaxe.wav", Sound.class);
+		manager.load("Audio/Music/gameMusic.mp3", Music.class);
+		manager.load("Audio/Sounds/pickaxe.mp3", Sound.class);
 		//this boxes all assets for the time being
 		manager.finishLoading();
 
