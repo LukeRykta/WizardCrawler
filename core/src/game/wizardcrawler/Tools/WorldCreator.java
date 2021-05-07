@@ -57,22 +57,10 @@ public class WorldCreator {
         }
 
         //coin object
-        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            //define the type of properties our body (the ground) will contain
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getY() + rect.getHeight() / 2) / WizardCrawlerApp.PPM);
-
-            //add this body to our box2d world
-            body = world.createBody(bdef);
-
-            //setAsBox = define fixture
-            shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
-            fdef.shape = shape;
-            fdef.isSensor = true;
-            body.createFixture(fdef);
-
+            new Ore(screen, rect);
         }
 
         //ore object
