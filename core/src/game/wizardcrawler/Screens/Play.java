@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import game.wizardcrawler.Scenes.Hud;
 import game.wizardcrawler.Sprites.Wizard;
@@ -86,7 +87,7 @@ public class Play implements Screen {
 
     private void createCamera(){
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(WizardCrawlerApp.V_WIDTH * 2 / WizardCrawlerApp.PPM, WizardCrawlerApp.V_HEIGHT * 2 / WizardCrawlerApp.PPM, gamecam);
+        gamePort = new StretchViewport(WizardCrawlerApp.V_WIDTH * 2 / WizardCrawlerApp.PPM, WizardCrawlerApp.V_HEIGHT * 2 / WizardCrawlerApp.PPM, gamecam);
     }
 
     public TextureAtlas getAtlas(){

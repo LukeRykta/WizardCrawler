@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -50,6 +51,7 @@ public class WizardCrawlerApp extends Game {
 		Gdx.input.setInputProcessor(controller);
 
 		manager = new AssetManager();
+		manager.load("Sounds/menuMusic.mp3", Music.class);
 		//manager.load("audio/sounds/pickaxe.wav", Sound.class);
 		//this boxes all assets for the time being
 		manager.finishLoading();
