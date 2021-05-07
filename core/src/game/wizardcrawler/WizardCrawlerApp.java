@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,9 +22,8 @@ public class WizardCrawlerApp extends Game {
 	// Update these to true objects
 	public static final short GROUND_BIT = 1;
 	public static final short WIZARD_BIT = 2;
-	public static final short FURNITURE_BIT = 4;
-	public static final short WALL_BIT = 8;
-	public static final short ACCESSED_BIT = 16;
+	public static final short ORE_BIT = 4;
+	public static final short ACCESSED_BIT = 8;
 
 	public SpriteBatch batch;
 	public static boolean inRange = false;
@@ -40,13 +40,17 @@ public class WizardCrawlerApp extends Game {
 	public static Texture loadTexture (String file) {
 		return new Texture(Gdx.files.internal(file));
 	}
-	
+
 	@Override
 	public void create () {
 		controller = new KeyController();
 		Gdx.input.setInputProcessor(controller);
 
 		manager = new AssetManager();
+		manager.load("audio/sounds/pickaxe.wav", Sound.class);
+		//this boxes all assets for the time being
+		manager.finishLoading();
+
 		batch = new SpriteBatch();
 		setScreen(new Play(this));
 	}
