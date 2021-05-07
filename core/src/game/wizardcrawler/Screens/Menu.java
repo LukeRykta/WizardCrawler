@@ -38,7 +38,7 @@ public class Menu extends ScreenAdapter {
         testTable.setFillParent(true);
         stage.addActor(testTable);
 
-        menumusic = WizardCrawlerApp.manager.get("Sounds/menuMusic.mp3", Music.class);
+        menumusic = WizardCrawlerApp.manager.get("Audio/Music/menuMusic.mp3", Music.class);
         menumusic.setLooping(true);
         menumusic.setVolume(mastervol);
         menumusic.play();
