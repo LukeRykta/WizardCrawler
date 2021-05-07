@@ -98,7 +98,7 @@ public class Play implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && WizardCrawlerApp.inRange){
+        if(Gdx.input.isKeyPressed(Input.Keys.E) && WizardCrawlerApp.inRange){
             System.out.println("ore mined");
         }
 
