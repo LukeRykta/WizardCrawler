@@ -1,16 +1,17 @@
 package game.wizardcrawler.Screens;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import game.wizardcrawler.WizardCrawlerApp;
@@ -20,21 +21,17 @@ public class Menu implements Screen {
     private Game game;
     private Viewport viewport;
 
-
     public Menu(Game game) {
         this.game = game;
+
         viewport = new FitViewport(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((WizardCrawlerApp) game).batch);
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-
-        Table table = new Table();
-        table.center();
-        table.setFillParent(true);
-
-        Label gameOverLabel = new Label("Main Menu", font);
-        table.add(gameOverLabel).expandX();
-        stage.addActor(table);
+        Table testTable = new Table();
+        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu.png"))));
+        testTable.setFillParent(true);
+        testTable.setDebug(true);
+        stage.addActor(testTable);
 
 
     }
@@ -56,8 +53,9 @@ public class Menu implements Screen {
     @Override
     public void render(float delta) {
         update();
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0f, 0f, 0f, 0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act();
         stage.draw();
     }
 
