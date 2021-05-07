@@ -47,7 +47,7 @@ public class WizardCrawlerApp extends Game {
 		Gdx.input.setInputProcessor(controller);
 
 		manager = new AssetManager();
-		manager.load("audio/sounds/pickaxe.wav", Sound.class);
+		//manager.load("audio/sounds/pickaxe.wav", Sound.class);
 		//this boxes all assets for the time being
 		manager.finishLoading();
 

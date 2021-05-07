@@ -19,7 +19,7 @@ public class Wizard extends Sprite {
         this.runningRight = runningRight;
     }
 
-    public enum State {STANDING, RUNNING, JUMPING, FALLING};
+    public enum State {STANDING, RUNNING, JUMPING, FALLING}
     public State currentState;
     public State previousState;
     public World world;
@@ -42,7 +42,7 @@ public class Wizard extends Sprite {
         runningRight = true;
 
         // creates an array of texture regions to pass the constructor for the animations
-        Array<TextureRegion> frames = new Array<TextureRegion>();
+        Array<TextureRegion> frames = new Array<>();
         for(int i = 1; i < 8; i++)
             frames.add(new TextureRegion(getTexture(), i * 32, 0, 32, 32));
         wizardRun = new Animation(0.1f, frames);
@@ -130,7 +130,7 @@ public class Wizard extends Sprite {
 
         //test start position on map
         // FIXME: 5/4/2021 change for spawn location
-        bdef.position.set(64 / WizardCrawlerApp.PPM, 64 / WizardCrawlerApp.PPM);
+        bdef.position.set(64 / WizardCrawlerApp.PPM, 480 / WizardCrawlerApp.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
 
         //Now that the wizard's defined, we are able create in our world

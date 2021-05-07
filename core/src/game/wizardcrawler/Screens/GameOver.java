@@ -32,7 +32,7 @@ public class GameOver implements Screen {
         table.center();
         table.setFillParent(true);
 
-        Label gameOverLabel = new Label("GAME OVER, YOU ARE ASS", font);
+        Label gameOverLabel = new Label("GAME OVER", font);
         table.add(gameOverLabel).expandX();
 
         stage.addActor(table);
