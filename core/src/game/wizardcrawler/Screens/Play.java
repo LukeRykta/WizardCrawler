@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -44,6 +45,7 @@ public class Play implements Screen {
 
     //sets master volume
     private Music gamemusic;
+    private Sound jump;
     public static float mastervol = .08f;
 
     public Play(WizardCrawlerApp game){
@@ -76,10 +78,12 @@ public class Play implements Screen {
 
         //plays music on start
         gamemusic = WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class);
-
         gamemusic.setLooping(true);
         gamemusic.setVolume(mastervol);
         gamemusic.play();
+
+        //set jumping sound
+        jump = Gdx.audio.newSound(Gdx.files.internal("Audio/Sounds/jump.mp3"));
     }
 
     private void createCamera(){
@@ -92,8 +96,10 @@ public class Play implements Screen {
     }
 
     public void handleInput(float dt){
-        if((Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE))&& player.b2body.getLinearVelocity().y == 0)
+        if((Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE))&& player.b2body.getLinearVelocity().y == 0) {
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            jump.play(0.2f);
+        }
         if(Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2)
