@@ -23,8 +23,8 @@ public class Ore extends InteractiveTileObject{
         if (Gdx.input.isKeyPressed(Input.Keys.E) && WizardCrawlerApp.inRange) {
             getCell().setTile(null);
             setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
-            Hud.addScore(200);
+            WizardCrawlerApp.manager.get("Audio/Sounds/pickaxe.mp3", Sound.class).play();
+            Hud.addScore(250);
         }
-        WizardCrawlerApp.manager.get("Audio/Sounds/pickaxe.mp3", Sound.class).play();
     }
 }
