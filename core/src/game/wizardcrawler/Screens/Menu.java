@@ -35,7 +35,7 @@ public class Menu extends ScreenAdapter {
         stage = new Stage(viewport, game.batch);
 
         Table testTable = new Table();
-        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu2.jpg"))));
+        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu.jpg"))));
         testTable.setFillParent(true);
         stage.addActor(testTable);
 
