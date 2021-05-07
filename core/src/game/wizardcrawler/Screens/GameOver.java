@@ -59,11 +59,11 @@ public class GameOver implements Screen {
 
     public void update(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            overMusic.stop();
+            //overMusic.stop();
             System.exit(0);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            overMusic.stop();
+            //overMusic.stop();
             game.setScreen(new Play((WizardCrawlerApp) game));
         }
     }
