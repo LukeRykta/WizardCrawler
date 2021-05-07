@@ -37,7 +37,6 @@ public class Menu extends ScreenAdapter {
         Table testTable = new Table();
         testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu2.jpg"))));
         testTable.setFillParent(true);
-        testTable.setDebug(true);
         stage.addActor(testTable);
 
         menumusic = WizardCrawlerApp.manager.get("Sounds/menuMusic.mp3", Music.class);
