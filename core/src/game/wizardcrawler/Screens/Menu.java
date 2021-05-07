@@ -30,12 +30,11 @@ public class Menu extends ScreenAdapter {
         this.game = game;
         //guiCam = new OrthographicCamera(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT);
         //guiCam.position.set(WizardCrawlerApp.V_WIDTH / 2, WizardCrawlerApp.V_HEIGHT / 2, 0);
-
         viewport = new StretchViewport(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, game.batch);
 
         Table testTable = new Table();
-        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu2.jpg"))));
+        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu.jpg"))));
         testTable.setFillParent(true);
         stage.addActor(testTable);
 

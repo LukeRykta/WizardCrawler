@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
+import game.wizardcrawler.Screens.Description;
 import game.wizardcrawler.Screens.GameOver;
 import game.wizardcrawler.Screens.Menu;
 import game.wizardcrawler.Screens.Play;
