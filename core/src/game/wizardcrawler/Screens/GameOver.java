@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -22,7 +23,7 @@ public class GameOver implements Screen {
     private Stage stage;
     private Game game;
     private Label outputLabel;
-    private Music overMusic;
+    private Sound overMusic;
     public static float mastervol = .08f;
 
     public GameOver(Game game){
@@ -30,10 +31,8 @@ public class GameOver implements Screen {
         viewport = new FitViewport(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((WizardCrawlerApp) game).batch);
 
-        overMusic = WizardCrawlerApp.manager.get("Audio/Sounds/gameover.mp3", Music.class);
-        overMusic.setLooping(true);
-        overMusic.setVolume(mastervol);
-        overMusic.play();
+        //overMusic = WizardCrawlerApp.manager.get("Audio/Sounds/jump.mp3", Sound.class);
+        //overMusic.play();
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
@@ -76,7 +75,7 @@ public class GameOver implements Screen {
             System.exit(0);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            overMusic.stop();
+            //overMusic.stop();
             game.setScreen(new Play((WizardCrawlerApp) game));
         }
     }
