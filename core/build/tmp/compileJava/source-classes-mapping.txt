@@ -1,5 +1,5 @@
-game/wizardcrawler/Scenes/Hud.java
- game.wizardcrawler.Scenes.Hud
+game/wizardcrawler/WizardCrawlerApp.java
+ game.wizardcrawler.WizardCrawlerApp
 game/wizardcrawler/Tools/WorldContactListener.java
  game.wizardcrawler.Tools.WorldContactListener
 game/wizardcrawler/Screens/Menu.java
@@ -10,8 +10,8 @@ game/wizardcrawler/Sprites/Wizard.java
  game.wizardcrawler.Sprites.Wizard
  game.wizardcrawler.Sprites.Wizard$1
  game.wizardcrawler.Sprites.Wizard$State
-game/wizardcrawler/Screens/Play.java
- game.wizardcrawler.Screens.Play
+game/wizardcrawler/Tools/KeyController.java
+ game.wizardcrawler.Tools.KeyController
 game/wizardcrawler/Screens/GameOver.java
  game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/Tools/WorldCreator.java
@@ -20,15 +20,15 @@ game/wizardcrawler/Sprites/CoinCollisionHandler.java
  game.wizardcrawler.Sprites.CoinCollisionHandler
 game/wizardcrawler/Sprites/InteractiveTileObject.java
  game.wizardcrawler.Sprites.InteractiveTileObject
-game/wizardcrawler/Sprites/Ore.java
- game.wizardcrawler.Sprites.Ore
-game/wizardcrawler/Sprites/Trap.java
- game.wizardcrawler.Sprites.Trap
-game/wizardcrawler/Tools/KeyController.java
- game.wizardcrawler.Tools.KeyController
 game/wizardcrawler/Sprites/Coin.java
  game.wizardcrawler.Sprites.Coin
  game.wizardcrawler.Sprites.Coin$1
  game.wizardcrawler.Sprites.Coin$State
-game/wizardcrawler/WizardCrawlerApp.java
- game.wizardcrawler.WizardCrawlerApp
+game/wizardcrawler/Sprites/Trap.java
+ game.wizardcrawler.Sprites.Trap
+game/wizardcrawler/Scenes/Hud.java
+ game.wizardcrawler.Scenes.Hud
+game/wizardcrawler/Sprites/Ore.java
+ game.wizardcrawler.Sprites.Ore
+game/wizardcrawler/Screens/Play.java
+ game.wizardcrawler.Screens.Play

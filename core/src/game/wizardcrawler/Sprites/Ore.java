@@ -19,7 +19,7 @@ public class Ore extends InteractiveTileObject{
     public void onHeadHit() {
         Gdx.app.log("Ore", "Collision detected");
         WizardCrawlerApp.inRange = true;
-        //Hud.addScore(200);
+        Hud.addScore(200);
         //WizardCrawlerApp.manager.get("audio/sounds/pickaxe.wav", Sound.class).play();
         setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
     }
