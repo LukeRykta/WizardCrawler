@@ -1,27 +1,27 @@
-game/wizardcrawler/Sprites/Coin.java
- game.wizardcrawler.Sprites.Coin
- game.wizardcrawler.Sprites.Coin$State
-game/wizardcrawler/Tools/KeyController.java
- game.wizardcrawler.Tools.KeyController
-game/wizardcrawler/Tools/WorldContactListener.java
- game.wizardcrawler.Tools.WorldContactListener
-game/wizardcrawler/Screens/Menu.java
- game.wizardcrawler.Screens.Menu
 game/wizardcrawler/Scenes/Hud.java
  game.wizardcrawler.Scenes.Hud
 game/wizardcrawler/Sprites/Computer.java
  game.wizardcrawler.Sprites.Computer
+game/wizardcrawler/Tools/WorldContactListener.java
+ game.wizardcrawler.Tools.WorldContactListener
+game/wizardcrawler/Tools/WorldCreator.java
+ game.wizardcrawler.Tools.WorldCreator
 game/wizardcrawler/Sprites/InteractiveTileObject.java
  game.wizardcrawler.Sprites.InteractiveTileObject
-game/wizardcrawler/WizardCrawlerApp.java
- game.wizardcrawler.WizardCrawlerApp
 game/wizardcrawler/Sprites/Wizard.java
  game.wizardcrawler.Sprites.Wizard
  game.wizardcrawler.Sprites.Wizard$1
  game.wizardcrawler.Sprites.Wizard$State
-game/wizardcrawler/Screens/GameOver.java
- game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/Screens/Play.java
  game.wizardcrawler.Screens.Play
-game/wizardcrawler/Tools/WorldCreator.java
- game.wizardcrawler.Tools.WorldCreator
+game/wizardcrawler/Tools/KeyController.java
+ game.wizardcrawler.Tools.KeyController
+game/wizardcrawler/Screens/GameOver.java
+ game.wizardcrawler.Screens.GameOver
+game/wizardcrawler/Sprites/Coin.java
+ game.wizardcrawler.Sprites.Coin
+ game.wizardcrawler.Sprites.Coin$State
+game/wizardcrawler/Screens/Menu.java
+ game.wizardcrawler.Screens.Menu
+game/wizardcrawler/WizardCrawlerApp.java
+ game.wizardcrawler.WizardCrawlerApp
