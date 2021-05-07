@@ -20,6 +20,7 @@ public class Hud implements Disposable {
     private Viewport viewport;
 
     public Integer worldTimer;
+    private boolean timeUp;
     private float timeCount;
     public static Integer score;
     private static Label scoreLabel;
@@ -61,7 +62,11 @@ public class Hud implements Disposable {
     public void update(float dt){
         timeCount += dt;
         if(timeCount >= 1) {
-            worldTimer--;
+            if(worldTimer > 0) {
+                worldTimer--;
+            } else {
+                timeUp = true;
+            }
             countdownLabel.setText(String.format("%03d", worldTimer));
             timeCount = 0;
         }
@@ -74,6 +79,8 @@ public class Hud implements Disposable {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
+
+    public boolean isTimeUp() { return timeUp; }
 }

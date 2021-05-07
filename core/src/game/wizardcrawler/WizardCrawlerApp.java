@@ -24,6 +24,7 @@ public class WizardCrawlerApp extends Game {
 	public static final float PPM = 100;
 
 	// Collision bits for objects
+	public static final short NOTHING_BIT = 0;
 	public static final short DEFAULT_BIT = 1;
 	public static final short GROUND_BIT = 2;
 	public static final short WIZARD_BIT = 4;

@@ -139,8 +139,10 @@ public class Play implements Screen {
             game.setScreen(new GameOver(game));
         }
         //attach our gamecam to our players.x coordinate
-        gamecam.position.x = player.getX();
-        gamecam.position.y = player.getY();
+        if(player.currentState != Wizard.State.DEAD) {
+            gamecam.position.x = player.getX();
+            gamecam.position.y = player.getY();
+        }
 
         //update our gamecam with correct coordinates after changes
         gamecam.update();
@@ -181,6 +183,13 @@ public class Play implements Screen {
         hud.stage.draw();
     }
 
+    public boolean gameOver(){
+        if(player.currentState == Wizard.State.DEAD && player.getStateTimer() > 3){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
@@ -218,4 +227,6 @@ public class Play implements Screen {
         hud.dispose();
         player.getTexture().dispose();
     }
+
+    public Hud getHud(){ return hud; }
 }
