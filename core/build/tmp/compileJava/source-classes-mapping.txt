@@ -1,5 +1,5 @@
-game/wizardcrawler/Scenes/Hud.java
- game.wizardcrawler.Scenes.Hud
+game/wizardcrawler/Tools/WorldContactListener.java
+ game.wizardcrawler.Tools.WorldContactListener
 game/wizardcrawler/Screens/GameOver.java
  game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/WizardCrawlerApp.java
@@ -24,8 +24,8 @@ game/wizardcrawler/Sprites/Wizard.java
  game.wizardcrawler.Sprites.Wizard
  game.wizardcrawler.Sprites.Wizard$1
  game.wizardcrawler.Sprites.Wizard$State
-game/wizardcrawler/Tools/WorldContactListener.java
- game.wizardcrawler.Tools.WorldContactListener
+game/wizardcrawler/Scenes/Hud.java
+ game.wizardcrawler.Scenes.Hud
 game/wizardcrawler/Sprites/Ore.java
  game.wizardcrawler.Sprites.Ore
 game/wizardcrawler/Screens/Play.java
