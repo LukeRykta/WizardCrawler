@@ -59,7 +59,7 @@ public abstract class InteractiveTileObject {
                 -divide same way as x
      */
     public TiledMapTileLayer.Cell getCell(){
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
+        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(2);
         return layer.getCell((int)(body.getPosition().x * WizardCrawlerApp.PPM / 32),
                 (int)(body.getPosition().y * WizardCrawlerApp.PPM / 32));
     }
