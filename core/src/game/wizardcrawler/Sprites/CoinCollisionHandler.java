@@ -18,4 +18,9 @@ public class CoinCollisionHandler extends InteractiveTileObject{
         getCell().setTile(null);
         //setCategoryFilter(WizardCrawlerApp.EMPTYCOIN_BIT);
     }
+
+    @Override
+    public void duringContact() {
+
+    }
 }

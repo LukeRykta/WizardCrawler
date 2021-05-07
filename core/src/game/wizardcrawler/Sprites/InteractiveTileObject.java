@@ -31,7 +31,7 @@ public abstract class InteractiveTileObject {
 
         //add this body to our box2d world
         body = world.createBody(bdef);
-
+        
         //setAsBox = define fixture
         shape.setAsBox((bounds.getWidth() / 2) / WizardCrawlerApp.PPM, (bounds.getHeight() / 2) / WizardCrawlerApp.PPM);
         fdef.shape = shape;
@@ -41,6 +41,8 @@ public abstract class InteractiveTileObject {
     }
 
     public abstract void onHeadHit();
+
+    public abstract void duringContact();
 
     public void setCategoryFilter(short filterBit){
         Filter filter = new Filter();

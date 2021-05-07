@@ -27,4 +27,9 @@ public class Ore extends InteractiveTileObject{
             Hud.addScore(250);
         }
     }
+
+    @Override
+    public void duringContact() {
+        Gdx.app.log("Ore", "Collision2 detected");
+    }
 }
