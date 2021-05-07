@@ -1,6 +1,7 @@
 package game.wizardcrawler.Screens;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,6 +21,8 @@ public class Menu implements Screen {
     private Stage stage;
     private Game game;
     private Viewport viewport;
+    public static float mastervol = .08f;
+    private Music gamemusic;
 
     public Menu(Game game) {
         this.game = game;
@@ -28,11 +31,15 @@ public class Menu implements Screen {
         stage = new Stage(viewport, ((WizardCrawlerApp) game).batch);
 
         Table testTable = new Table();
-        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu.png"))));
+        testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/main-menu2.jpg"))));
         testTable.setFillParent(true);
         testTable.setDebug(true);
         stage.addActor(testTable);
 
+        gamemusic = Gdx.audio.newMusic(Gdx.files.internal("Sounds/menuMusic.mp3"));
+        gamemusic.setLooping(true);
+        gamemusic.setVolume(mastervol);
+        gamemusic.play();
 
     }
 
@@ -41,6 +48,8 @@ public class Menu implements Screen {
             System.exit(0);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            gamemusic.stop();
+            gamemusic.dispose();
             game.setScreen(new Play((WizardCrawlerApp) game));
         }
     }
