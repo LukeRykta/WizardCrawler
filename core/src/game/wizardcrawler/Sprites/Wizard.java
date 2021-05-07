@@ -143,14 +143,14 @@ public class Wizard extends Sprite {
 
         fdef.filter.categoryBits = WizardCrawlerApp.WIZARD_BIT;
         //these are the things wizard can collide with
-        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT;
+        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT | WizardCrawlerApp.ORE_BIT | WizardCrawlerApp.DEFAULT_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
         EdgeShape head = new EdgeShape();
         //where?
-        head.set(new Vector2(-2 / WizardCrawlerApp.PPM, 12 / WizardCrawlerApp.PPM), new Vector2(2 / WizardCrawlerApp.PPM, 12 / WizardCrawlerApp.PPM));
+        head.set(new Vector2(-2 / WizardCrawlerApp.PPM, 8 / WizardCrawlerApp.PPM), new Vector2(2 / WizardCrawlerApp.PPM, 12 / WizardCrawlerApp.PPM));
 
         fdef.shape = head;
         // when you create a fixture definition that is a sensor, it no longer collides with anything in the world, it is just available for you to query for user data

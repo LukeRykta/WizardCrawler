@@ -22,10 +22,11 @@ public class WizardCrawlerApp extends Game {
 	public static final float PPM = 100;
 
 	// Update these to true objects
-	public static final short GROUND_BIT = 1;
-	public static final short WIZARD_BIT = 2;
-	public static final short ORE_BIT = 4;
-	public static final short ACCESSED_BIT = 8;
+	public static final short DEFAULT_BIT = 1;
+	public static final short GROUND_BIT = 2;
+	public static final short WIZARD_BIT = 4;
+	public static final short ORE_BIT = 8;
+	public static final short ACCESSED_BIT = 16;
 
 	public SpriteBatch batch;
 	public static boolean inRange = false;

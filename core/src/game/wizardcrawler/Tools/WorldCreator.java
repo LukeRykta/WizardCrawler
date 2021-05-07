@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import game.wizardcrawler.Screens.Play;
-import game.wizardcrawler.Sprites.Computer;
+import game.wizardcrawler.Sprites.Ore;
 import game.wizardcrawler.WizardCrawlerApp;
 
 public class WorldCreator {
@@ -51,9 +51,18 @@ public class WorldCreator {
             //setAsBox = define fixture
             shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
             fdef.shape = shape;
+            fdef.isSensor = true;
             body.createFixture(fdef);
 
         }
+
+        //ore object
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Ore(screen, rect);
+        }
+
 
 
     /*
