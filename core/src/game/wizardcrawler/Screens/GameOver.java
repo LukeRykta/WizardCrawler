@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import game.wizardcrawler.Scenes.Hud;
 import game.wizardcrawler.WizardCrawlerApp;
 
 public class GameOver implements Screen {
