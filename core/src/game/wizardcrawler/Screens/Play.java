@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import game.wizardcrawler.AI.goldWizard;
 import game.wizardcrawler.Scenes.Hud;
 import game.wizardcrawler.Sprites.InteractiveTileObject;
 import game.wizardcrawler.Sprites.Wizard;
@@ -42,6 +43,8 @@ public class Play implements Screen {
 
     //Realizes wizard character
     private Wizard player;
+    private goldWizard GoldWizard;
+
 
     //sets master volume
     private Music gamemusic;
@@ -75,6 +78,7 @@ public class Play implements Screen {
         new WorldCreator(this);
 
         player = new Wizard(this);
+        GoldWizard = new goldWizard(this);
 
         //plays music on start
         gamemusic = WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class);
@@ -131,6 +135,7 @@ public class Play implements Screen {
         world.step(1/60f, 6, 2);
 
         player.update(dt);
+        GoldWizard.update(dt);
         hud.update(dt);
 
         if(hud.worldTimer <= 0) {
@@ -175,6 +180,7 @@ public class Play implements Screen {
         game.batch.begin();
         //giving sprite game batch to be drawn
         player.draw(game.batch);
+        GoldWizard.draw(game.batch);
 
         game.batch.end();
 
@@ -227,6 +233,7 @@ public class Play implements Screen {
         b2dr.dispose();
         hud.dispose();
         player.getTexture().dispose();
+        GoldWizard.getTexture().dispose();
     }
 
     public Hud getHud(){ return hud; }

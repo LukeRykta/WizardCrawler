@@ -1,11 +1,13 @@
 package game.wizardcrawler.Tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 
 public class KeyController implements InputProcessor {
     public boolean left,right,up,down;
+    public static boolean shooting;
     public boolean isMouse1Down, isMouse2Down,isMouse3Down;
     public boolean isDragged;
     public Vector2 mouseLocation = new Vector2(0,0);
@@ -110,4 +112,19 @@ public class KeyController implements InputProcessor {
         //screen.camera.zoom += amount * 0.2f;
         return false;
     }
+
+    public static boolean attackButton(){
+        boolean keyProcessed = false;
+
+        if(Gdx.input.isKeyPressed(Keys.J)) {
+
+            shooting = true;   // do this
+            keyProcessed = true;    // we have reacted to a keypress
+
+        } return keyProcessed;
+    }
+
+
+
+
 }
