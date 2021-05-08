@@ -8,8 +8,6 @@ game/wizardcrawler/Screens/Description.java
  game.wizardcrawler.Screens.Description
 game/wizardcrawler/Tools/KeyController.java
  game.wizardcrawler.Tools.KeyController
-game/wizardcrawler/Sprites/Trap.java
- game.wizardcrawler.Sprites.Trap
 game/wizardcrawler/Screens/Menu.java
  game.wizardcrawler.Screens.Menu
 game/wizardcrawler/Sprites/Wizard.java
@@ -36,6 +34,8 @@ game/wizardcrawler/Sprites/Ore.java
  game.wizardcrawler.Sprites.Ore
 game/wizardcrawler/AI/Health.java
  game.wizardcrawler.AI.Health
+game/wizardcrawler/Sprites/Trap.java
+ game.wizardcrawler.Sprites.Trap
 game/wizardcrawler/AI/goldWizard.java
  game.wizardcrawler.AI.goldWizard
 game/wizardcrawler/Sprites/Coin.java

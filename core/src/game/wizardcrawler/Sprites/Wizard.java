@@ -39,7 +39,7 @@ public class Wizard extends Sprite {
     private float stateTimer;
 
     private boolean runningRight;
-    private boolean wizardIsDead;
+    public static boolean wizardIsDead;
 
     private Play screen;
 
@@ -91,6 +91,7 @@ public class Wizard extends Sprite {
         TextureRegion region;
         switch (currentState) {
             case DEAD:
+                region = wizardDead;
             case JUMPING:
             case FALLING:
                 region = wizardJump.getKeyFrame(stateTimer);
@@ -120,9 +121,7 @@ public class Wizard extends Sprite {
     }
 
     public void die() {
-
         if (!isDead()) {
-
             WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class).stop();
             WizardCrawlerApp.manager.get("Audio/Sounds/death.mp3", Sound.class).play();
             wizardIsDead = true;

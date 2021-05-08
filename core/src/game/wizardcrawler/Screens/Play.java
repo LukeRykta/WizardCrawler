@@ -132,6 +132,12 @@ public class Play implements Screen {
         GoldWizard.update(dt);
         hud.update(dt);
 
+        if (Wizard.wizardIsDead){
+            game.setScreen(new GameOver(game));
+        }
+
+        Wizard.wizardIsDead = false;
+
         if(hud.worldTimer <= 0) {
             System.out.println("GAME OVER!");
             gamemusic.stop();
