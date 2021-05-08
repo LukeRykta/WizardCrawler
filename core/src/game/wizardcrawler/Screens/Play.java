@@ -49,7 +49,7 @@ public class Play implements Screen {
     //sets master volume
     private Music gamemusic;
     private Sound jump;
-    public static float mastervol = .20f;
+    public static float mastervol = .2f;
 
     public Play(WizardCrawlerApp game){
 
@@ -109,7 +109,7 @@ public class Play implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            System.exit(0);
+            game.setScreen(new Description(game));
         }
     }
 
