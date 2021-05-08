@@ -159,7 +159,6 @@
   <object id="68" x="928" y="480" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="9" name="mush">
-  <object id="69" x="449.5" y="483" width="69" height="70.5"/>
   <object id="90" x="889.333" y="756.667" width="40" height="42.6667"/>
  </objectgroup>
 </map>
