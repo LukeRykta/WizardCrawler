@@ -49,7 +49,7 @@ public class Play implements Screen {
     //sets master volume
     private Music gamemusic;
     private Sound jump;
-    public static float mastervol = .08f;
+    public static float mastervol = .45f;
 
     public Play(WizardCrawlerApp game){
 

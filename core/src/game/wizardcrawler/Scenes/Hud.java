@@ -28,7 +28,7 @@ public class Hud implements Disposable {
     private Label countdownLabel;
 
     public Hud(SpriteBatch sb){
-        worldTimer = 10;
+        worldTimer = 120;
         timeCount = 0;
         score = 0;
 
