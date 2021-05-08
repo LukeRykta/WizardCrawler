@@ -21,7 +21,7 @@ public class Mushroom extends InteractiveTileObject{
         Gdx.app.log("Mushroom", "Collision detected");
         getCell().setTile(null);
         setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
-        WizardCrawlerApp.manager.get("Audio/Sounds/mushroom.mp3", Sound.class);
+        WizardCrawlerApp.manager.get("Audio/Sounds/mushroom.mp3", Sound.class).play();
         Hud.addScore(250);
     }
 
