@@ -56,13 +56,14 @@ public class WizardCrawlerApp extends Game {
 		manager = new AssetManager();
 		manager.load("Audio/Music/menuMusic.mp3", Music.class);
 		manager.load("Audio/Music/gameMusic.mp3", Music.class);
+		manager.load("Audio/Music/gameover.mp3", Music.class);
 		manager.load("Audio/Sounds/pickaxe.mp3", Sound.class);
 		//this boxes all assets for the time being
 		manager.finishLoading();
 
 		batch = new SpriteBatch();
 		//setScreen(new Play(this));
-		setScreen(new Menu(this));
+		setScreen(new GameOver(this));
 	}
 
 	@Override

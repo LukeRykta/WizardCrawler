@@ -221,6 +221,7 @@ public class Play implements Screen {
     @Override
     public void dispose() {
         map.dispose();
+        gamemusic.dispose();
         renderer.dispose();
         world.dispose();
         b2dr.dispose();

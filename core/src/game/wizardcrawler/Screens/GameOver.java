@@ -29,18 +29,19 @@ public class GameOver implements Screen {
     private Game game;
     private Label outputLabel;
     private Music overMusic;
-    public static float mastervol = .08f;
+    public static float mastervol = .15f;
 
     public GameOver(Game game){
         this.game = game;
         viewport = new StretchViewport(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((WizardCrawlerApp) game).batch);
 
-        /*overMusic = WizardCrawlerApp.manager.get("Audio/Sounds/gameover.mp3", Music.class);
+        WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class).stop();
+        overMusic = WizardCrawlerApp.manager.get("Audio/Music/gameover.mp3", Music.class);
         overMusic.setLooping(true);
         overMusic.setVolume(mastervol);
         overMusic.play();
-        */
+
 
         Table testTable = new Table();
         testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/game-over.jpg"))));
@@ -59,11 +60,11 @@ public class GameOver implements Screen {
 
     public void update(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            //overMusic.stop();
+            overMusic.stop();
             System.exit(0);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            //overMusic.stop();
+            overMusic.stop();
             game.setScreen(new Play((WizardCrawlerApp) game));
         }
     }
