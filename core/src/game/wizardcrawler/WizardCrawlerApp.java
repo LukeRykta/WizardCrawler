@@ -34,7 +34,6 @@ public class WizardCrawlerApp extends Game {
 	public static final short ENEMY_BIT = 64;
 	public static final short ENEMY_HEAD_BIT = 128;
 	public static final short MUSH_BIT = 256;
-	public static final short TRAP_BIT = 32;
 
 
 	public SpriteBatch batch;
