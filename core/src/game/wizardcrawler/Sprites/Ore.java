@@ -24,7 +24,7 @@ public class Ore extends InteractiveTileObject{
             getCell().setTile(null);
             setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
             WizardCrawlerApp.manager.get("Audio/Sounds/pickaxe.mp3", Sound.class).play();
-            Hud.addScore(250);
+            Hud.addScore(1000);
         }
     }
 

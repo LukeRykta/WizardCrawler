@@ -6,6 +6,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import game.wizardcrawler.Screens.Play;
+import game.wizardcrawler.Sprites.CoinCollisionHandler;
+import game.wizardcrawler.Sprites.Mushroom;
 import game.wizardcrawler.Sprites.Ore;
 import game.wizardcrawler.WizardCrawlerApp;
 
@@ -54,13 +56,19 @@ public class WorldCreator {
             fdef.isSensor = true;
             body.createFixture(fdef);
 
+        // mushroom object
+        }
+        for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Mushroom(screen, rect);
         }
 
         //coin object
         for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Ore(screen, rect);
+            new CoinCollisionHandler(screen, rect);
         }
 
         //ore object
