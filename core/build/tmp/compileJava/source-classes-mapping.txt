@@ -1,9 +1,9 @@
-game/wizardcrawler/WizardCrawlerApp.java
- game.wizardcrawler.WizardCrawlerApp
-game/wizardcrawler/Tools/WorldContactListener.java
- game.wizardcrawler.Tools.WorldContactListener
 game/wizardcrawler/Scenes/Hud.java
  game.wizardcrawler.Scenes.Hud
+game/wizardcrawler/Tools/WorldContactListener.java
+ game.wizardcrawler.Tools.WorldContactListener
+game/wizardcrawler/WizardCrawlerApp.java
+ game.wizardcrawler.WizardCrawlerApp
 game/wizardcrawler/Screens/Description.java
  game.wizardcrawler.Screens.Description
 game/wizardcrawler/Tools/KeyController.java
