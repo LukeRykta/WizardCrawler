@@ -1,5 +1,6 @@
 package game.wizardcrawler.desktop;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
@@ -12,6 +13,7 @@ public class DesktopLauncher {
 
 		// creates new instance of configuration
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.addIcon("WizardGFX/singlewizard.png", Files.FileType.Internal);
 
 		// sets title of window
 		config.title = "Wizard Crawler";
