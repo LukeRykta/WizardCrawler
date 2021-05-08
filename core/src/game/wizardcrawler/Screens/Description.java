@@ -53,11 +53,11 @@ public class Description implements Screen {
         leave.setFillParent(true);
 
         Label DescriptionOne = new Label("In Wizard crawler you play as Wizzy.", font);
-        Label DescriptionTwo = new Label("Collect mushrooms and ore to gain points", font);
+        Label DescriptionTwo = new Label("Collect mushrooms, coins and ore to gain points", font);
 
         Label DescriptionControls = new Label("CONTROLS:", font);
-        Label DescriptionControlsTwo = new Label("WASD or the arrow keys to move.", font);
-        Label DescriptionControlsThree = new Label("Press 'E' to interact with objects around the map", font);
+        Label DescriptionControlsTwo = new Label("WASD to move / spacebar to jump.", font);
+        Label DescriptionControlsThree = new Label("Run through objects to grab them!", font);
 
         Label DescriptionLeave = new Label("PRESS ESC TO RETURN TO MENU", font);
 
