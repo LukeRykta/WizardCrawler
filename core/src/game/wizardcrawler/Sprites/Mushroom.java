@@ -12,11 +12,12 @@ public class Mushroom extends InteractiveTileObject{
     public Mushroom(Play screen, Rectangle bounds){
         super(screen, bounds);
         fixture.setUserData(this);
-        setCategoryFilter((WizardCrawlerApp.MUSH_BIT));
+        setCategoryFilter((WizardCrawlerApp.COIN_BIT));
     }
 
     @Override
     public void onHeadHit() {
+        WizardCrawlerApp.inRange = true;
         Gdx.app.log("Mushroom", "Collision detected");
         getCell().setTile(null);
         setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);

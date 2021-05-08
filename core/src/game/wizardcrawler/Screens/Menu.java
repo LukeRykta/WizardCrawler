@@ -23,7 +23,7 @@ public class Menu extends ScreenAdapter {
     private Stage stage;
     OrthographicCamera guiCam;
     private Viewport viewport;
-    public static float mastervol = .08f;
+    public static float mastervol = .20f;
     private Music menumusic;
 
     public Menu(WizardCrawlerApp game) {

@@ -40,12 +40,7 @@ public class WorldCreator {
 
         }
 
-        //trap object
-        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-            new Trap(screen, rect);
-        }
         // mushroom object
 
         for(MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
