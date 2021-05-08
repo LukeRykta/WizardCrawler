@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -16,7 +17,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import game.wizardcrawler.AI.goldWizard;
 import game.wizardcrawler.Scenes.Hud;
+import game.wizardcrawler.Sprites.InteractiveTileObject;
 import game.wizardcrawler.Sprites.Wizard;
 import game.wizardcrawler.Tools.WorldContactListener;
 import game.wizardcrawler.Tools.WorldCreator;
@@ -40,9 +43,12 @@ public class Play implements Screen {
 
     //Realizes wizard character
     private Wizard player;
+    private goldWizard GoldWizard;
+
 
     //sets master volume
     private Music gamemusic;
+    private Sound jump;
     public static float mastervol = .08f;
 
     public Play(WizardCrawlerApp game){
@@ -72,13 +78,16 @@ public class Play implements Screen {
         new WorldCreator(this);
 
         player = new Wizard(this);
+        GoldWizard = new goldWizard(this);
 
         //plays music on start
         gamemusic = WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class);
-
         gamemusic.setLooping(true);
         gamemusic.setVolume(mastervol);
         gamemusic.play();
+
+        //set jumping sound
+        jump = Gdx.audio.newSound(Gdx.files.internal("Audio/Sounds/jump.mp3"));
     }
 
     private void createCamera(){
@@ -91,16 +100,19 @@ public class Play implements Screen {
     }
 
     public void handleInput(float dt){
-        if((Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE))&& player.b2body.getLinearVelocity().y == 0)
+        if((Gdx.input.isKeyJustPressed(Input.Keys.W) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE))&& player.b2body.getLinearVelocity().y == 0) {
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            jump.play(0.2f);
+        }
         if(Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= 2)
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
         if(Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.E) && WizardCrawlerApp.inRange){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.E) && WizardCrawlerApp.inRange){
             System.out.println("ore mined");
         }
+
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             System.exit(0);
@@ -123,6 +135,7 @@ public class Play implements Screen {
         world.step(1/60f, 6, 2);
 
         player.update(dt);
+        GoldWizard.update(dt);
         hud.update(dt);
 
         if(hud.worldTimer <= 0) {
@@ -131,8 +144,10 @@ public class Play implements Screen {
             game.setScreen(new GameOver(game));
         }
         //attach our gamecam to our players.x coordinate
-        gamecam.position.x = player.getX();
-        gamecam.position.y = player.getY();
+        if(player.currentState != Wizard.State.DEAD) {
+            gamecam.position.x = player.getX();
+            gamecam.position.y = player.getY();
+        }
 
         //update our gamecam with correct coordinates after changes
         gamecam.update();
@@ -165,12 +180,20 @@ public class Play implements Screen {
         game.batch.begin();
         //giving sprite game batch to be drawn
         player.draw(game.batch);
+        GoldWizard.draw(game.batch);
 
         game.batch.end();
 
         //Set our batch to now draw what the Hud camera sees
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+    }
+
+    public boolean gameOver(){
+        if(player.currentState == Wizard.State.DEAD && player.getStateTimer() > 3){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -204,10 +227,14 @@ public class Play implements Screen {
     @Override
     public void dispose() {
         map.dispose();
+        gamemusic.dispose();
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
         hud.dispose();
         player.getTexture().dispose();
+        GoldWizard.getTexture().dispose();
     }
+
+    public Hud getHud(){ return hud; }
 }

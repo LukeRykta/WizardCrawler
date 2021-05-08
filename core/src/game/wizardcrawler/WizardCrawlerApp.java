@@ -24,14 +24,18 @@ public class WizardCrawlerApp extends Game {
 	public static final float PPM = 100;
 
 	// Collision bits for objects
+	public static final short NOTHING_BIT = 0;
 	public static final short DEFAULT_BIT = 1;
 	public static final short GROUND_BIT = 2;
 	public static final short WIZARD_BIT = 4;
 	public static final short ORE_BIT = 8;
 	public static final short ACCESSED_BIT = 16;
     public static final short COIN_BIT = 32;
+	public static final short ENEMY_BIT = 64;
+	public static final short ENEMY_HEAD_BIT = 128;
 
-    public SpriteBatch batch;
+
+	public SpriteBatch batch;
 	public static boolean inRange = false;
 
 	public static Texture background;
@@ -55,6 +59,7 @@ public class WizardCrawlerApp extends Game {
 		manager = new AssetManager();
 		manager.load("Audio/Music/menuMusic.mp3", Music.class);
 		manager.load("Audio/Music/gameMusic.mp3", Music.class);
+		manager.load("Audio/Music/gameover.mp3", Music.class);
 		manager.load("Audio/Sounds/pickaxe.mp3", Sound.class);
 		//this boxes all assets for the time being
 		manager.finishLoading();

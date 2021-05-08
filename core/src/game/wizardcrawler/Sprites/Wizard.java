@@ -1,5 +1,8 @@
 package game.wizardcrawler.Sprites;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -19,7 +22,7 @@ public class Wizard extends Sprite {
         this.runningRight = runningRight;
     }
 
-    public enum State {STANDING, RUNNING, JUMPING, FALLING}
+    public enum State {STANDING, RUNNING, JUMPING, FALLING, DEAD, SHOOTING}
     public State currentState;
     public State previousState;
     public World world;
@@ -27,14 +30,22 @@ public class Wizard extends Sprite {
     private Vector2 velocity = new Vector2();
     private float speed = 60 * 2, gravity = 60 * 1.8f;
     private TextureRegion wizardStand;
+    private TextureRegion wizardShoot;
+    private TextureRegion wizardDead;
     private Animation<TextureRegion> wizardFall;
     private Animation<TextureRegion> wizardRun;
     private Animation<TextureRegion> wizardJump;
+    // tracks time between states
     private float stateTimer;
+
     private boolean runningRight;
+    private boolean wizardIsDead;
+
+    private Play screen;
 
     public Wizard(Play screen){
         super(screen.getAtlas().findRegion("isowizard"));
+        this.screen = screen;
         this.world = screen.getWorld();
         currentState = State.STANDING;
         previousState = State.STANDING;
@@ -54,9 +65,8 @@ public class Wizard extends Sprite {
         wizardFall = new Animation(0.1f, frames);
 
         wizardStand = new TextureRegion(getTexture(), 0, 0, 32, 32);
-        //wizardFall = new TextureRegion(getTexture(), 96, 32, 32, 32);
-        //for(int i = 1; i < 3; i++)
-        //    frames.add(new TextureRegion(getTexture(),  96, 32, 32, 32));
+        wizardDead = new TextureRegion(getTexture(), 256, 32, 32, 32);
+        wizardShoot = new TextureRegion(getTexture(), 64, 32, 32, 32);
 
 
         defineWizard();
@@ -65,6 +75,10 @@ public class Wizard extends Sprite {
     }
 
     public void update(float dt){
+
+        if (screen.getHud().isTimeUp() && !isDead()) {
+            die();
+        }
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
         //returns the appropriate frame that will display the sprite's texture region
@@ -76,6 +90,7 @@ public class Wizard extends Sprite {
 
         TextureRegion region;
         switch (currentState) {
+            case DEAD:
             case JUMPING:
             case FALLING:
                 region = wizardJump.getKeyFrame(stateTimer);
@@ -104,8 +119,28 @@ public class Wizard extends Sprite {
         return region;
     }
 
+    public void die() {
+
+        if (!isDead()) {
+
+            WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class).stop();
+            WizardCrawlerApp.manager.get("Audio/Sounds/death.mp3", Sound.class).play();
+            wizardIsDead = true;
+            Filter filter = new Filter();
+            filter.maskBits = WizardCrawlerApp.NOTHING_BIT;
+
+            for (Fixture fixture : b2body.getFixtureList()) {
+                fixture.setFilterData(filter);
+            }
+
+            b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+        }
+    }
+
     public State getState(){
-        if ((b2body.getLinearVelocity().y > 0) || (b2body.getLinearVelocity().y < 0 && previousState == State.STANDING)) // wizard moving upwards? stand
+        if(wizardIsDead)
+            return State.DEAD;
+        else if ((b2body.getLinearVelocity().y > 0) || (b2body.getLinearVelocity().y < 0 && previousState == State.STANDING)) // wizard moving upwards? stand
             return State.JUMPING;
         else if (b2body.getLinearVelocity().y < 0) // wizard going down? fall animation
             return State.FALLING;
@@ -118,6 +153,10 @@ public class Wizard extends Sprite {
     public boolean gameOverReached(){
         return true;
         // FIXME: 5/4/2021  add condition for game over being reached and return
+    }
+
+    public boolean isDead(){
+        return wizardIsDead;
     }
 
     public float getStateTimer(){
@@ -143,7 +182,11 @@ public class Wizard extends Sprite {
 
         fdef.filter.categoryBits = WizardCrawlerApp.WIZARD_BIT;
         //these are the things wizard can collide with
-        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT | WizardCrawlerApp.ORE_BIT | WizardCrawlerApp.DEFAULT_BIT;
+        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT
+                | WizardCrawlerApp.ORE_BIT
+                | WizardCrawlerApp.COIN_BIT
+                | WizardCrawlerApp.DEFAULT_BIT
+                | WizardCrawlerApp.ENEMY_HEAD_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
@@ -153,7 +196,7 @@ public class Wizard extends Sprite {
         head.set(new Vector2(-2 / WizardCrawlerApp.PPM, 8 / WizardCrawlerApp.PPM), new Vector2(2 / WizardCrawlerApp.PPM, 12 / WizardCrawlerApp.PPM));
 
         fdef.shape = head;
-        // when you create a fixture definition that is a sensor, it no longer collides with anything in the world, it is just available for you to query for user data
+        // when you create a fixture definition that is a sensor, it no longer collides with anything in the world, it is just available for querying user data
         fdef.isSensor = true;
 
         // this will uniquely identify this head fixture as "head" so we can pull this in the future to see if this fixture is wizard's head
