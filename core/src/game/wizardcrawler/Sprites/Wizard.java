@@ -1,12 +1,16 @@
 package game.wizardcrawler.Sprites;
 
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import game.wizardcrawler.AI.Attack;
 import game.wizardcrawler.Screens.Play;
+import game.wizardcrawler.Tools.KeyController;
 import game.wizardcrawler.WizardCrawlerApp;
 
 import javax.xml.soap.Text;
@@ -19,7 +23,7 @@ public class Wizard extends Sprite {
         this.runningRight = runningRight;
     }
 
-    public enum State {STANDING, RUNNING, JUMPING, FALLING};
+    public enum State {STANDING, RUNNING, JUMPING, FALLING, SHOOTING};
     public State currentState;
     public State previousState;
     public World world;
@@ -27,11 +31,15 @@ public class Wizard extends Sprite {
     private Vector2 velocity = new Vector2();
     private float speed = 60 * 2, gravity = 60 * 1.8f;
     private TextureRegion wizardStand;
+    private TextureRegion wizardShoot;
+    private TextureRegion fireBall;
     private Animation<TextureRegion> wizardFall;
     private Animation<TextureRegion> wizardRun;
     private Animation<TextureRegion> wizardJump;
     private float stateTimer;
     private boolean runningRight;
+
+
 
     public Wizard(Play screen){
         super(screen.getAtlas().findRegion("isowizard"));
@@ -53,7 +61,10 @@ public class Wizard extends Sprite {
         wizardJump = new Animation(0.1f, frames);
         wizardFall = new Animation(0.1f, frames);
 
+        fireBall = new TextureRegion(getTexture(), 288, 32, 32 ,32);
         wizardStand = new TextureRegion(getTexture(), 0, 0, 32, 32);
+        wizardShoot = new TextureRegion(getTexture(), 0, 32, 32, 32);
+
         //wizardFall = new TextureRegion(getTexture(), 96, 32, 32, 32);
         //for(int i = 1; i < 3; i++)
         //    frames.add(new TextureRegion(getTexture(),  96, 32, 32, 32));
@@ -83,6 +94,9 @@ public class Wizard extends Sprite {
             case RUNNING:
                 region = wizardRun.getKeyFrame(stateTimer, true); // this is a looping animation, if returns to end, will return to first frame
                 break;
+            case SHOOTING:
+                region = wizardShoot;
+                break;
             case STANDING:
             default:
                 region = wizardStand;
@@ -111,6 +125,10 @@ public class Wizard extends Sprite {
             return State.FALLING;
         else if (b2body.getLinearVelocity().x != 0 || b2body.getLinearVelocity().y != 0) // wizard not at a state of rest? run animation
             return State.RUNNING;
+        else if (KeyController.attackButton()) {
+           // Fire animation
+            return State.SHOOTING;
+        }
         else                                        // wizard doing something else? = stand animation
             return State.STANDING;
     }
@@ -143,7 +161,9 @@ public class Wizard extends Sprite {
 
         fdef.filter.categoryBits = WizardCrawlerApp.WIZARD_BIT;
         //these are the things wizard can collide with
-        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT;
+        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT |
+                                WizardCrawlerApp.ENEMY_HEAD_BIT |
+                                WizardCrawlerApp.ENEMY_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
@@ -158,6 +178,5 @@ public class Wizard extends Sprite {
 
         // this will uniquely identify this head fixture as "head" so we can pull this in the future to see if this fixture is wizard's head
         b2body.createFixture(fdef).setUserData("head");
-
     }
 }

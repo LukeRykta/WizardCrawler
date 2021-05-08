@@ -33,9 +33,13 @@ public class WorldCreator {
             //setAsBox = define fixture
             shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
             fdef.shape = shape;
+            fdef.filter.categoryBits = WizardCrawlerApp.GROUND_BIT;
             body.createFixture(fdef);
 
         }
+
+        // Enemy Boundaries
+
 
 
     /*
