@@ -20,12 +20,10 @@ public class Ore extends InteractiveTileObject{
     public void onHeadHit() {
         WizardCrawlerApp.inRange = true;
         Gdx.app.log("Ore", "Collision detected");
-        if (Gdx.input.isKeyPressed(Input.Keys.E) && WizardCrawlerApp.inRange) {
-            getCell().setTile(null);
-            setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
-            WizardCrawlerApp.manager.get("Audio/Sounds/pickaxe.mp3", Sound.class).play();
-            Hud.addScore(250);
-        }
+        getCell().setTile(null);
+        setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
+        WizardCrawlerApp.manager.get("Audio/Sounds/pickaxe.mp3", Sound.class).play();
+        Hud.addScore(1000);
     }
 
     @Override
