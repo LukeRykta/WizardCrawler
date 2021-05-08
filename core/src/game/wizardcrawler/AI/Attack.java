@@ -7,19 +7,13 @@ import game.wizardcrawler.Sprites.InteractiveTileObject;
 
 
 
-public class Attack extends InteractiveTileObject {
+public class Attack {
 
     // TODO Draw ball at 288, 32, 32, 32
 
-    public Attack(Play screen, Rectangle bounds){
+    public Attack(Play screen, Rectangle bounds) {
         // TODO Fireball animation
-        super(screen, bounds);
-        fixture.setUserData(this);
 
-    }
 
-    @Override
-    public void onHeadHit() {
-        Gdx.app.log("Attack", "Collision");
     }
 }

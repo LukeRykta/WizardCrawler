@@ -31,8 +31,11 @@ public class WizardCrawlerApp extends Game {
 	public static final short ORE_BIT = 8;
 	public static final short ACCESSED_BIT = 16;
     public static final short COIN_BIT = 32;
+	public static final short ENEMY_BIT = 64;
+	public static final short ENEMY_HEAD_BIT = 128;
 
-    public SpriteBatch batch;
+
+	public SpriteBatch batch;
 	public static boolean inRange = false;
 
 	public static Texture background;

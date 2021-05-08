@@ -182,9 +182,6 @@ public class Play implements Screen {
         player.draw(game.batch);
         GoldWizard.draw(game.batch);
 
-
-
-
         game.batch.end();
 
         //Set our batch to now draw what the Hud camera sees
@@ -235,6 +232,7 @@ public class Play implements Screen {
         b2dr.dispose();
         hud.dispose();
         player.getTexture().dispose();
+        GoldWizard.getTexture().dispose();
     }
 
     public Hud getHud(){ return hud; }

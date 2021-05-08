@@ -1,5 +1,6 @@
 package game.wizardcrawler.Sprites;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -21,7 +22,7 @@ public class Wizard extends Sprite {
         this.runningRight = runningRight;
     }
 
-    public enum State {STANDING, RUNNING, JUMPING, FALLING, DEAD}
+    public enum State {STANDING, RUNNING, JUMPING, FALLING, DEAD, SHOOTING}
     public State currentState;
     public State previousState;
     public World world;
@@ -29,6 +30,7 @@ public class Wizard extends Sprite {
     private Vector2 velocity = new Vector2();
     private float speed = 60 * 2, gravity = 60 * 1.8f;
     private TextureRegion wizardStand;
+    private TextureRegion wizardShoot;
     private TextureRegion wizardDead;
     private Animation<TextureRegion> wizardFall;
     private Animation<TextureRegion> wizardRun;
@@ -64,6 +66,8 @@ public class Wizard extends Sprite {
 
         wizardStand = new TextureRegion(getTexture(), 0, 0, 32, 32);
         wizardDead = new TextureRegion(getTexture(), 256, 32, 32, 32);
+        wizardShoot = new TextureRegion(getTexture(), 64, 32, 32, 32);
+
 
         defineWizard();
         setBounds(0, 0, 32 / WizardCrawlerApp.PPM, 32 / WizardCrawlerApp.PPM);
@@ -181,7 +185,8 @@ public class Wizard extends Sprite {
         fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT
                 | WizardCrawlerApp.ORE_BIT
                 | WizardCrawlerApp.COIN_BIT
-                | WizardCrawlerApp.DEFAULT_BIT;
+                | WizardCrawlerApp.DEFAULT_BIT
+                | WizardCrawlerApp.ENEMY_HEAD_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
