@@ -90,7 +90,6 @@ public class Wizard extends Sprite {
 
         TextureRegion region;
         switch (currentState) {
-            case DEAD:
             case JUMPING:
             case FALLING:
                 region = wizardJump.getKeyFrame(stateTimer);
@@ -99,6 +98,7 @@ public class Wizard extends Sprite {
                 region = wizardRun.getKeyFrame(stateTimer, true); // this is a looping animation, if returns to end, will return to first frame
                 break;
             case STANDING:
+            case DEAD:
             default:
                 region = wizardStand;
                 break;

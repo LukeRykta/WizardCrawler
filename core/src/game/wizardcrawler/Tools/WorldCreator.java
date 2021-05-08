@@ -9,6 +9,7 @@ import game.wizardcrawler.Screens.Play;
 import game.wizardcrawler.Sprites.CoinCollisionHandler;
 import game.wizardcrawler.Sprites.Mushroom;
 import game.wizardcrawler.Sprites.Ore;
+import game.wizardcrawler.Sprites.Trap;
 import game.wizardcrawler.WizardCrawlerApp;
 
 public class WorldCreator {
@@ -62,6 +63,13 @@ public class WorldCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             new Mushroom(screen, rect);
+        }
+
+        //trap object
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Trap(screen, rect);
         }
 
         //coin object
