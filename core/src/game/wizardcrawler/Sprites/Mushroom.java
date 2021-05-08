@@ -20,10 +20,11 @@ public class Mushroom extends InteractiveTileObject{
     @Override
     public void onHeadHit() {
         WizardCrawlerApp.inRange = true;
+        Sound mushroom = Gdx.audio.newSound(Gdx.files.internal("Audio/Sounds/mushroom.mp3"));
+        mushroom.play(0.2f);
         Gdx.app.log("Mushroom", "Collision detected");
         getCell().setTile(null);
         setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
-        WizardCrawlerApp.manager.get("Audio/Sounds/mushroom.mp3", Sound.class).play(mastervol);
         Hud.addScore(250);
     }
 
