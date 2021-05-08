@@ -23,8 +23,9 @@ public class Menu extends ScreenAdapter {
     private Stage stage;
     OrthographicCamera guiCam;
     private Viewport viewport;
-    public static float mastervol = .20f;
+    public static float mastervol = .2f;
     private Music menumusic;
+
 
     public Menu(WizardCrawlerApp game) {
         this.game = game;
@@ -41,6 +42,8 @@ public class Menu extends ScreenAdapter {
         menumusic.setLooping(true);
         menumusic.setVolume(mastervol);
         menumusic.play();
+
+
     }
 
     public void update(){

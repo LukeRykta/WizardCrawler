@@ -29,7 +29,7 @@ public class GameOver implements Screen {
     private Game game;
     private Label outputLabel;
     private Music overMusic;
-    public static float mastervol = .15f;
+    public static float mastervol = .20f;
 
     public GameOver(Game game){
         this.game = game;
@@ -63,7 +63,7 @@ public class GameOver implements Screen {
             overMusic.stop();
             System.exit(0);
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
             overMusic.stop();
             game.setScreen(new Play((WizardCrawlerApp) game));
         }
