@@ -20,8 +20,9 @@ public class Hud implements Disposable {
     private Viewport viewport;
 
     public Integer worldTimer;
+    private boolean timeUp;
     private float timeCount;
-    private static Integer score;
+    public static Integer score;
     private static Label scoreLabel;
     private Label timeLabel;
     private Label countdownLabel;
@@ -40,7 +41,7 @@ public class Hud implements Disposable {
 
         countdownLabel = new Label(String.format("%02d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        Label scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label wizzyLabel = new Label("WIZZY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label worldLabel = new Label("LEVEL", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -61,7 +62,11 @@ public class Hud implements Disposable {
     public void update(float dt){
         timeCount += dt;
         if(timeCount >= 1) {
-            worldTimer--;
+            if(worldTimer > 0) {
+                worldTimer--;
+            } else {
+                timeUp = true;
+            }
             countdownLabel.setText(String.format("%03d", worldTimer));
             timeCount = 0;
         }
@@ -74,6 +79,8 @@ public class Hud implements Disposable {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
+
+    public boolean isTimeUp() { return timeUp; }
 }

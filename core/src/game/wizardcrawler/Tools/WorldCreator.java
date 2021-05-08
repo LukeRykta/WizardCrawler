@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import game.wizardcrawler.Screens.Play;
-import game.wizardcrawler.Sprites.Computer;
+import game.wizardcrawler.Sprites.Ore;
 import game.wizardcrawler.WizardCrawlerApp;
 
 public class WorldCreator {
@@ -20,7 +20,7 @@ public class WorldCreator {
         Body body;
 
         //wall boundaries
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
             //define the type of properties our body (the ground) will contain
@@ -33,12 +33,42 @@ public class WorldCreator {
             //setAsBox = define fixture
             shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
             fdef.shape = shape;
-            fdef.filter.categoryBits = WizardCrawlerApp.GROUND_BIT;
             body.createFixture(fdef);
 
         }
 
-        // Enemy Boundaries
+        //trap object
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            //define the type of properties our body (the ground) will contain
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getY() + rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+
+            //add this body to our box2d world
+            body = world.createBody(bdef);
+
+            //setAsBox = define fixture
+            shape.setAsBox((rect.getWidth() / 2) / WizardCrawlerApp.PPM, (rect.getHeight() / 2) / WizardCrawlerApp.PPM);
+            fdef.shape = shape;
+            fdef.isSensor = true;
+            body.createFixture(fdef);
+
+        }
+
+        //coin object
+        for(MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Ore(screen, rect);
+        }
+
+        //ore object
+        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+
+            new Ore(screen, rect);
+        }
 
 
 
