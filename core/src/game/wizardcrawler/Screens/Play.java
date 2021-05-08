@@ -140,7 +140,7 @@ public class Play implements Screen {
 
         if(hud.worldTimer <= 0) {
             System.out.println("GAME OVER!");
-            //gamemusic.stop();
+            gamemusic.stop();
             game.setScreen(new GameOver(game));
         }
         //attach our gamecam to our players.x coordinate
