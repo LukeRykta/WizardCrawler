@@ -9,8 +9,6 @@ import game.wizardcrawler.Screens.Play;
 import game.wizardcrawler.WizardCrawlerApp;
 
 public class Mushroom extends InteractiveTileObject{
-    public static float vol = -100f;
-    public Sound mCoin;
     public Mushroom(Play screen, Rectangle bounds){
         super(screen, bounds);
         fixture.setUserData(this);
@@ -23,8 +21,7 @@ public class Mushroom extends InteractiveTileObject{
         Gdx.app.log("Mushroom", "Collision detected");
         getCell().setTile(null);
         setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
-        mCoin = WizardCrawlerApp.manager.get("Audio/Sounds/mushroom.mp3", Sound.class);
-        mCoin.setVolume(mCoin.play(-100f), vol);
+        WizardCrawlerApp.manager.get("Audio/Sounds/mushroom.mp3", Sound.class);
         Hud.addScore(250);
     }
 
