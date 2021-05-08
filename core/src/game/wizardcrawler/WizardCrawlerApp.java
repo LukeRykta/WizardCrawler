@@ -66,7 +66,7 @@ public class WizardCrawlerApp extends Game {
 
 		batch = new SpriteBatch();
 		//setScreen(new Play(this));
-		setScreen(new GameOver(this));
+		setScreen(new Menu(this));
 	}
 
 	@Override

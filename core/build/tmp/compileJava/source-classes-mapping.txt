@@ -12,14 +12,14 @@ game/wizardcrawler/Sprites/Wizard.java
  game.wizardcrawler.Sprites.Wizard$State
 game/wizardcrawler/Screens/Play.java
  game.wizardcrawler.Screens.Play
-game/wizardcrawler/Screens/GameOver.java
- game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/AI/Attack.java
  game.wizardcrawler.AI.Attack
-game/wizardcrawler/Tools/WorldCreator.java
- game.wizardcrawler.Tools.WorldCreator
+game/wizardcrawler/Screens/GameOver.java
+ game.wizardcrawler.Screens.GameOver
 game/wizardcrawler/Sprites/Enemy.java
  game.wizardcrawler.Sprites.Enemy
+game/wizardcrawler/Tools/WorldCreator.java
+ game.wizardcrawler.Tools.WorldCreator
 game/wizardcrawler/Sprites/CoinCollisionHandler.java
  game.wizardcrawler.Sprites.CoinCollisionHandler
 game/wizardcrawler/Sprites/InteractiveTileObject.java
