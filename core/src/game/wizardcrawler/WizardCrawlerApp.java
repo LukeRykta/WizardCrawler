@@ -40,9 +40,6 @@ public class WizardCrawlerApp extends Game {
 	public static boolean inRange = false;
 	public static boolean isDead = false;
 
-	public static Texture background;
-	public static TextureRegion backgroundRegion;
-
 	public KeyController controller;
 
 	/* NOTE: using AssetManager in a static way can cause issues. We may want to pass around Assetmanager to
@@ -87,6 +84,5 @@ public class WizardCrawlerApp extends Game {
 		super.dispose();
 		manager.dispose();
 		batch.dispose();
-		background.dispose();
 	}
 }
