@@ -42,3 +42,5 @@ game/wizardcrawler/Sprites/Coin.java
  game.wizardcrawler.Sprites.Coin$State
 game/wizardcrawler/WizardCrawlerApp.java
  game.wizardcrawler.WizardCrawlerApp
+game/wizardcrawler/WizardCrawlerApp.java
+ game.wizardcrawler.WizardCrawlerApp
