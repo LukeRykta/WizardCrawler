@@ -1,8 +1,8 @@
 # WizardCrawler
 CS3443 Team Project\
-name\
-name\
-name\
+Zach Welch - \
+Duong Nguye - \
+Luke Rykta - \
 Magnus Cromwell - imd074
 
 To use this application, you must clone the project. Click "Code" and copy the Clone Link. In your terminal, type "git clone *clone_link*" and press enter. Navigate into the cloned application and run "WizardCrawlerApp.jar" to start the game!
