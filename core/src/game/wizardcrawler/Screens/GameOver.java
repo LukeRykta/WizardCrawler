@@ -36,8 +36,6 @@ public class GameOver implements Screen {
         viewport = new StretchViewport(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((WizardCrawlerApp) game).batch);
 
-        Hud.addScore(Hud.worldTimer * 10);
-
         if (score > WizardCrawlerApp.highScore) {
             WizardCrawlerApp.highScore = score;
         }
