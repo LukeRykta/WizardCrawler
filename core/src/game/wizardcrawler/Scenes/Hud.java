@@ -19,16 +19,17 @@ public class Hud implements Disposable {
     public Stage stage;
     private Viewport viewport;
 
-    public Integer worldTimer;
     private boolean timeUp;
     private float timeCount;
     public static Integer score;
+    public static int worldTimer = 35;
     private static Label scoreLabel;
+
     private Label timeLabel;
     private Label countdownLabel;
 
     public Hud(SpriteBatch sb){
-        worldTimer = 120;
+        worldTimer = 35;
         timeCount = 0;
         score = 0;
 
@@ -39,8 +40,15 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(), Color.RED);
         countdownLabel = new Label(String.format("%02d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        if (Hud.worldTimer > 30) {
+            timeLabel = new Label("TIME", font);
+        }
+        else {
+            timeLabel = new Label("TIME", font2);
+        }
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label wizzyLabel = new Label("WIZZY", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         Label levelLabel = new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -69,7 +77,6 @@ public class Hud implements Disposable {
             }
             countdownLabel.setText(String.format("%03d", worldTimer));
             timeCount = 0;
-
         }
     }
 

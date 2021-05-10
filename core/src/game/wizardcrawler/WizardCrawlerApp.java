@@ -39,6 +39,7 @@ public class WizardCrawlerApp extends Game {
 	public SpriteBatch batch;
 	public static boolean inRange = false;
 	public static boolean isDead = false;
+	public static int highScore = 0;
 
 	public KeyController controller;
 

@@ -36,6 +36,12 @@ public class GameOver implements Screen {
         viewport = new StretchViewport(WizardCrawlerApp.V_WIDTH, WizardCrawlerApp.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((WizardCrawlerApp) game).batch);
 
+        Hud.addScore(Hud.worldTimer * 10);
+
+        if (score > WizardCrawlerApp.highScore) {
+            WizardCrawlerApp.highScore = score;
+        }
+
         WizardCrawlerApp.manager.get("Audio/Music/gameMusic.mp3", Music.class).stop();
         overMusic = WizardCrawlerApp.manager.get("Audio/Music/gameover.mp3", Music.class);
         overMusic.setLooping(true);
@@ -51,10 +57,14 @@ public class GameOver implements Screen {
         if (score == null) {
             score = 0;
         }
+
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        Label gameOverLabel = new Label("Score: " + score, font);
+        Label gameOverLabel = new Label("Score: " + score + "    ", font);
+        Label.LabelStyle font2 = new Label.LabelStyle(new BitmapFont(), Color.PURPLE);
+        Label highScoreLabel = new Label("Highscore: " + WizardCrawlerApp.highScore, font2);
         testTable.top();
         testTable.add(gameOverLabel);
+        testTable.add(highScoreLabel);
 
     }
 
