@@ -22,14 +22,14 @@ public class Hud implements Disposable {
     private boolean timeUp;
     private float timeCount;
     public static Integer score;
-    public static int worldTimer = 35;
+    public static int worldTimer = 120;
     private static Label scoreLabel;
 
     private Label timeLabel;
     private Label countdownLabel;
 
     public Hud(SpriteBatch sb){
-        worldTimer = 35;
+        worldTimer = 120;
         timeCount = 0;
         score = 0;
 
