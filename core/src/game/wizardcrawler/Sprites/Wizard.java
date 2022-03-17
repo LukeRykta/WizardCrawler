@@ -79,6 +79,7 @@ public class Wizard extends Sprite {
         if (screen.getHud().isTimeUp() && !isDead()) {
             die();
         }
+
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
         //returns the appropriate frame that will display the sprite's texture region
@@ -132,7 +133,7 @@ public class Wizard extends Sprite {
                 fixture.setFilterData(filter);
             }
 
-            b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
+            //b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);
         }
     }
 
@@ -181,7 +182,8 @@ public class Wizard extends Sprite {
 
         fdef.filter.categoryBits = WizardCrawlerApp.WIZARD_BIT;
         //these are the things wizard can collide with
-        fdef.filter.maskBits = WizardCrawlerApp.GROUND_BIT
+        fdef.filter.maskBits =
+                  WizardCrawlerApp.GROUND_BIT
                 | WizardCrawlerApp.ORE_BIT
                 | WizardCrawlerApp.COIN_BIT
                 | WizardCrawlerApp.DEFAULT_BIT

@@ -29,7 +29,7 @@ public class GameOver implements Screen {
     private Game game;
     private Label outputLabel;
     private Music overMusic;
-    public static float mastervol = .20f;
+    public static float mastervol = .10f;
 
     public GameOver(Game game){
         this.game = game;
@@ -45,7 +45,6 @@ public class GameOver implements Screen {
         overMusic.setLooping(true);
         overMusic.setVolume(mastervol);
         overMusic.play();
-
 
         Table testTable = new Table();
         testTable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Backgrounds/game-over.jpg"))));

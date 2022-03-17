@@ -43,7 +43,6 @@ public class Menu extends ScreenAdapter {
         menumusic.setVolume(mastervol);
         menumusic.play();
 
-
     }
 
     public void update(){

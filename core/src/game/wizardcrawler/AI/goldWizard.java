@@ -40,7 +40,7 @@ public class goldWizard extends Sprite {
         this.world = screen.getWorld();
         stateTime = 0;
 
-         wizardShoot = new TextureRegion(getTexture(), 288, 0, 32, 32);
+        wizardShoot = new TextureRegion(getTexture(), 288, 0, 32, 32);
 
 
         defineEnemy();

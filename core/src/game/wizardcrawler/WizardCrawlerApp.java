@@ -66,6 +66,7 @@ public class WizardCrawlerApp extends Game {
 		manager.load("Audio/Sounds/gameover.mp3", Sound.class);
 		manager.load("Audio/Sounds/coin.mp3", Sound.class);
 		manager.load("Audio/Sounds/mushroom.mp3", Sound.class);
+
 		//this boxes all assets for the time being
 		manager.finishLoading();
 

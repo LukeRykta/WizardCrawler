@@ -14,6 +14,7 @@ public class DesktopLauncher {
 		// creates new instance of configuration
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.addIcon("WizardGFX/icon.png", Files.FileType.Internal);
+		config.vSyncEnabled=true;
 
 		// sets title of window
 		config.title = "Wizard Crawler";

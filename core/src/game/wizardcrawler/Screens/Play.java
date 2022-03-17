@@ -14,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -45,11 +46,13 @@ public class Play implements Screen {
     private Wizard player;
     private goldWizard GoldWizard;
 
-
     //sets master volume
     private Music gamemusic;
     private Sound jump;
     public static float mastervol = .2f;
+
+    //speed
+    private int speed;
 
     public Play(WizardCrawlerApp game){
 
@@ -112,6 +115,9 @@ public class Play implements Screen {
             gamemusic.stop();
             game.setScreen(new Description(game));
         }
+
+        player.b2body.setLinearVelocity(new Vector2(0, 1));
+
     }
 
         // FIXME: 3/27/2021 Pause menu implementation?
@@ -134,12 +140,18 @@ public class Play implements Screen {
         hud.update(dt);
 
         if (Wizard.wizardIsDead){
+            Timer.Task task = new Timer.Task() {
+                @Override
+                public void run() {
+                    game.setScreen(new GameOver(game));
+                }
+            };
             game.setScreen(new GameOver(game));
         }
 
         Wizard.wizardIsDead = false;
 
-        if(hud.worldTimer <= 0) {
+        if(Hud.worldTimer <= 0) {
             System.out.println("GAME OVER!");
             gamemusic.stop();
             game.setScreen(new GameOver(game));
@@ -173,7 +185,7 @@ public class Play implements Screen {
         renderer.render();
 
         //renderer our Box2DDebugLines (green lines around objects represent collision areas) (also: gamecam.combined is the projection matrix)
-        //b2dr.render(world, gamecam.combined);
+        b2dr.render(world, gamecam.combined);
 
         //main cam when running through the game
         game.batch.setProjectionMatrix(gamecam.combined);
@@ -192,6 +204,7 @@ public class Play implements Screen {
 
     public boolean gameOver(){
         if(player.currentState == Wizard.State.DEAD && player.getStateTimer() > 3){
+            System.out.println("triggered ");
             return true;
         }
         return false;

@@ -20,7 +20,7 @@ public class CoinCollisionHandler extends InteractiveTileObject{
         getCell().setTile(null);
         setCategoryFilter(WizardCrawlerApp.ACCESSED_BIT);
         Hud.addScore(100);
-        WizardCrawlerApp.manager.get("Audio/Sounds/coin.mp3", Sound.class).play();
+        WizardCrawlerApp.manager.get("Audio/Sounds/coin.mp3", Sound.class).play(0.2f);
     }
 
     @Override
