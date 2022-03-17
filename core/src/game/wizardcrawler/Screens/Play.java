@@ -115,9 +115,6 @@ public class Play implements Screen {
             gamemusic.stop();
             game.setScreen(new Description(game));
         }
-
-        player.b2body.setLinearVelocity(new Vector2(0, 1));
-
     }
 
         // FIXME: 3/27/2021 Pause menu implementation?
